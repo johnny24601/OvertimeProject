@@ -1,4 +1,4 @@
-package uk.co.tpplc.local;
+package uk.co.tpplc.local.timesheet.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,17 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import uk.co.tpplc.local.timesheet.service.impl.DefaultManageTimesheetServiceImpl;
+
 /**
  * Servlet implementation class Start
  */
-@WebServlet("/Start")
-public class Start extends HttpServlet {
+@WebServlet("/TimesheetController")
+public class TimesheetController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger( Start.class.getName() );
+	private static final Logger log = Logger.getLogger( TimesheetController.class.getName() );
+	
     /**
      * Default constructor. 
      */
-    public Start() {
+    public TimesheetController() {
         // TODO Auto-generated constructor stub
     }
 
@@ -41,23 +44,16 @@ public class Start extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Date startDate = new Date();
-		Date endDate = new Date();
-		String type = request.getParameter("type");
-		try {
-			startDate = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("start"));
-			endDate = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("end"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			log.log(Level.SEVERE, e.getMessage(), e);
+		
+		DefaultManageTimesheetServiceImpl submit = new DefaultManageTimesheetServiceImpl();
+		
+		Boolean success = submit.writeTimesheetToDB(request);
+		
+		if (success) {
+			request.setAttribute("success", success);
+			request.getRequestDispatcher("/success.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/error.jsp").forward(request, response);
 		}
-		String description = request.getParameter("desc");
-		String resolution = request.getParameter("res");
-		System.out.println("Type: " + type);
-		System.out.println("Start Date: " + startDate);
-		System.out.println("End Date: " + endDate);
-		System.out.println("Resolution: " + resolution);
-		System.out.println("Description: " + description);
 	}
-
 }

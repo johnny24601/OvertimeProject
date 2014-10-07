@@ -8,7 +8,7 @@
 	<title>Timesheet</title>
 	</head>
 	<body>
-		<form method="post" action="Start">
+		<form method="post" action="../TimesheetController">
 		<table style="width:100%" border="1px" id="tableToModify">
 		  <tr>
 		  	<td>Type</td>

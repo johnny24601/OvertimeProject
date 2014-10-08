@@ -1,4 +1,4 @@
-package uk.co.tpplc.local.timesheet.service;
+package uk.co.tpplc.local.overtime.service;
 
 public interface AuthenticationService {
 	

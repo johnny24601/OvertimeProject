@@ -1,0 +1,58 @@
+.page-homepage {
+	height: 100%;
+}
+
+.center {
+	width: 24%;
+    text-align: center;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.loginForm {
+	margin-top: 30px;
+	width: 260px;
+	padding: 20px;
+	background-color: #F0F8FF;
+	border: 1px solid black;
+	font-weight: bold;
+}
+
+.loginForm label {
+	display: block;
+	clear: both;
+	margin-top: 10px;
+}
+
+.loginButton {
+	clear: both;
+	padding: 2px 30px;
+	margin-top: 15px;
+	margin-left: 5%;
+	border: 1px solid;
+}
+
+.overtimeTable {
+	width: 100%;
+	border: 1px solid black;
+}
+
+.wrapper {
+	width: 75%;
+	text-align: center;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.addLines {
+	margin-top: 15px;
+	text-align: left;
+}
+
+.submitOvertime {
+	margin-top: 15px;
+	text-align: left;
+}

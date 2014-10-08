@@ -1,4 +1,4 @@
-package uk.co.tpplc.local.timesheet.controllers;
+package uk.co.tpplc.local.overtime.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,20 +14,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import uk.co.tpplc.local.timesheet.service.impl.DefaultManageTimesheetServiceImpl;
+import uk.co.tpplc.local.overtime.service.impl.DefaultManageOvertimeServiceImpl;
 
 /**
  * Servlet implementation class Start
  */
 @WebServlet("/TimesheetController")
-public class TimesheetController extends HttpServlet {
+public class OvertimeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger( TimesheetController.class.getName() );
+	private static final Logger log = Logger.getLogger( OvertimeController.class.getName() );
 	
     /**
      * Default constructor. 
      */
-    public TimesheetController() {
+    public OvertimeController() {
         // TODO Auto-generated constructor stub
     }
 
@@ -45,9 +45,9 @@ public class TimesheetController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		DefaultManageTimesheetServiceImpl submit = new DefaultManageTimesheetServiceImpl();
+		DefaultManageOvertimeServiceImpl submit = new DefaultManageOvertimeServiceImpl();
 		
-		Boolean success = submit.writeTimesheetToDB(request);
+		Boolean success = submit.writeOvertimeToDB(request);
 		
 		if (success) {
 			request.setAttribute("success", success);

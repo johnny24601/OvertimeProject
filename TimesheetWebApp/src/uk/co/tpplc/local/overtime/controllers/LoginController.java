@@ -1,4 +1,4 @@
-package uk.co.tpplc.local.timesheet.controllers;
+package uk.co.tpplc.local.overtime.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import uk.co.tpplc.local.timesheet.service.AuthenticationService;
-import uk.co.tpplc.local.timesheet.service.impl.DefaultAuthenticationServiceImpl;
+import uk.co.tpplc.local.overtime.service.AuthenticationService;
+import uk.co.tpplc.local.overtime.service.impl.DefaultAuthenticationServiceImpl;
 
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
@@ -31,7 +31,6 @@ public class LoginController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String user = request.getParameter("username");
         String pwd = request.getParameter("password");
          
@@ -39,7 +38,8 @@ public class LoginController extends HttpServlet {
             HttpSession session = request.getSession();
             session.setMaxInactiveInterval(30*60);
             session.setAttribute("name",user);
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/submitTimesheet.jsp");
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/submitOvertime.jsp");
+            request.getSession().setAttribute("loggedInUser", user);
             rd.forward(request, response);
         }else{
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/jsp/loginError.jsp");

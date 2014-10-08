@@ -1,22 +1,22 @@
-package uk.co.tpplc.local.timesheet.service.impl;
+package uk.co.tpplc.local.overtime.service.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import uk.co.tpplc.local.timesheet.service.AuthenticationService;
-import uk.co.tpplc.local.timesheet.util.TimesheetJDBCConnector;
+import uk.co.tpplc.local.overtime.service.AuthenticationService;
+import uk.co.tpplc.local.overtime.util.OvertimeJDBCConnector;
 
 public class DefaultAuthenticationServiceImpl implements AuthenticationService {
 
-	TimesheetJDBCConnector jdbcConnector;
+	OvertimeJDBCConnector jdbcConnector;
 	
 	@Override
 	public Boolean validateLogin(String userName, String password) {
 		Boolean success = Boolean.FALSE;
 		Connection conn = null;
-		jdbcConnector = new TimesheetJDBCConnector();
+		jdbcConnector = new OvertimeJDBCConnector();
 		
 		try {
 			conn = jdbcConnector.getConnection();
@@ -34,14 +34,14 @@ public class DefaultAuthenticationServiceImpl implements AuthenticationService {
 		
 		try {
 			preparedStatement = conn
-			      .prepareStatement("SELECT userId, password from TIMESHEET.USER where userId = ? and password = ?");
+			      .prepareStatement("SELECT userEmail, password from TIMESHEET.USERS where userEmail = ? and password = ?");
 			preparedStatement.setString(1, userName);
 			preparedStatement.setString(2, password);
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while (rs.next()) {
-				return Boolean.TRUE;			
+				return Boolean.TRUE;		
 			}
 			
 		} catch (SQLException e) {

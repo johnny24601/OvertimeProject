@@ -1,4 +1,4 @@
-package uk.co.tpplc.local.timesheet.util;
+package uk.co.tpplc.local.overtime.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class TimesheetJDBCConnector {
+public class OvertimeJDBCConnector {
 	
-	private static final Logger log = Logger.getLogger( TimesheetJDBCConnector.class.getName() );
+	private static final Logger log = Logger.getLogger( OvertimeJDBCConnector.class.getName() );
 	
 	public Connection getConnection() throws SQLException {
 		try

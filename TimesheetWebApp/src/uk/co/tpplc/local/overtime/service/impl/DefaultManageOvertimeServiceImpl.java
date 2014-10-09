@@ -1,8 +1,9 @@
 package uk.co.tpplc.local.overtime.service.impl;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,6 +11,8 @@ import uk.co.tpplc.local.overtime.service.ManageOvertimeService;
 import uk.co.tpplc.local.overtime.util.OvertimeJDBCConnector;
 
 public class DefaultManageOvertimeServiceImpl extends OvertimeJDBCConnector implements ManageOvertimeService {
+	
+	private static final Logger log = Logger.getLogger( DefaultManageOvertimeServiceImpl.class.getName() );
 	
 	@Override
 	public Boolean writeOvertimeToDB(HttpServletRequest request) {
@@ -19,9 +22,10 @@ public class DefaultManageOvertimeServiceImpl extends OvertimeJDBCConnector impl
 		try {
 			conn = getConnection();
 			writeResultSet(conn, request);
+			// TODO add exception handling, must create new exception
 			closeConnection(conn);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, e.getMessage(), e);
 		}
 		
 		success = Boolean.TRUE;
@@ -37,30 +41,15 @@ public class DefaultManageOvertimeServiceImpl extends OvertimeJDBCConnector impl
 			readResultSet(conn, request);
 			closeConnection(conn);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			log.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 	
 	private void writeResultSet(Connection connection, HttpServletRequest request) {
-		int index = 0;
-		PreparedStatement preparedStatement;
-		
-//		try {
-//			preparedStatement = connection
-//			      .prepareStatement("insert into TIMESHEET.USERS(userEmail, level, password, department) values (?, ?, ?)");
-//			preparedStatement.setString(index++, "ppari");
-//			preparedStatement.setString(index++, "1");
-//			preparedStatement.setString(index++, "password");
-//			preparedStatement.setString(index++, "department");
-//			
-//			preparedStatement.executeUpdate();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		//TODO implement body to save an overtime to DB
 	}
 
 	private void readResultSet(Connection connection, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TODO implement body to read an overtime from DB
 	}
 }

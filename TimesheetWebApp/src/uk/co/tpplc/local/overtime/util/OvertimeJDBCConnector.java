@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.servlet.http.HttpServletRequest;
-
 public class OvertimeJDBCConnector {
 	
 	private static final Logger log = Logger.getLogger( OvertimeJDBCConnector.class.getName() );

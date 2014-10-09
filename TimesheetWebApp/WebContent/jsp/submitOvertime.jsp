@@ -9,23 +9,26 @@
 		  <tr>
 		  	<td>Type</td>
 		  	<td>Start</td>
+		  	<td>Start Time</td>
 		  	<td>End</td>
+		  	<td>End Time</td>
 		  	<td>Description</td>
 		  	<td>Resolution</td>
 		  </tr>
 		  <tr id="rowToClone">
 		    <td>
-		    	<select name="type">
-		  			<option value="oncall">On-Call</option>
-		  			<option value="overtime">Overtime</option>
-		  			<option value="callout">Callout</option>
-		  			<option value="other">Other</option>
+		   		<select name="type">
+		    		<c:forEach items="${overtimeEntries}" var="entry">
+		    			<option value="${entry}">${entry}</option>
+		  			</c:forEach>
 				</select>
 		    </td>
-		    <td><input type="text" name="start"></td>
-		    <td><input type="text" name="end"></td> 
-		    <td><input type="text" name="desc"></td>
-		    <td><input type="text" name="res"></td>
+		    <td><input type="text" name="start" id="startDatepicker"></td>
+		    <td><input type="text" name="startTime"></td>
+		    <td><input type="text" name="end" id="endDatePicker"></td>
+		    <td><input type="text" name="endTime"></td>
+		    <td><textarea name="desc"></textarea></td>
+		    <td><textarea name="res"></textarea></td>
 		  </tr>
 		</table>
 		
@@ -45,5 +48,10 @@
 			clone.id = "newID"; // change id or other attributes/contents
 			table.appendChild(clone); // add new row to end of table
 		}
+		
+		$(function() {
+		    $( "#startDatepicker" ).datepicker();
+		    $( "#endDatePicker" ).datepicker();
+		});
 	</script>
 </t:master>

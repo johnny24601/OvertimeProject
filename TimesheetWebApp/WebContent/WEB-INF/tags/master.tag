@@ -6,13 +6,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/overtime.css" />
+		<link rel="stylesheet" type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+  		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 		<title>TP Overtime App</title>
 	</head>
 	<body class="page-homepage">
 		<header>
 			<p style="font-size: 16px">This is the header</p>
-			${loggedInUser}
+
 			<c:if test="${ not empty loggedInUser}">
 				<p><a href="#" id="ajax_logout">Logout</a></p>
 			</c:if>
@@ -24,7 +26,6 @@
 		<script type="text/javascript">
 		
 		$("#ajax_logout").click(function(e) {
-			
 			e.preventDefault();
 			$.ajax({
 			  type: "GET",	

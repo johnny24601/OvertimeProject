@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class PropertyConfigReader {
 	
-	private static final String CONGIG_FILE_NAME = "/../config.properties";
+	private static final String CONGIG_FILE_NAME = "config.properties";
 	
 	public String getPropertyValue(String key) {
 		
@@ -19,10 +19,10 @@ public class PropertyConfigReader {
 		
 		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
 		try {
+			prop.load(inputStream);
 			if (inputStream == null) {
 				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
 			}
-			prop.load(inputStream);
 			result = prop.getProperty(key);
 		} catch (IOException e) {
 			e.printStackTrace();

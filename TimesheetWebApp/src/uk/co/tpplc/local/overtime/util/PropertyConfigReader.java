@@ -27,7 +27,6 @@ public class PropertyConfigReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 }

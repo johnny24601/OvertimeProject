@@ -12,20 +12,27 @@ public class OvertimeJDBCConnector {
 	
 	private static final Logger log = Logger.getLogger( OvertimeJDBCConnector.class.getName() );
 	
+	private static final String CLASS_DRIVER_NAME = "com.mysql.jdbc.Driver";
+	private static final String DATABASE_URL = "db.url";
+	private static final String DATABASE_USERNAME = "db.username";
+	private static final String DATABASE_PASSWORD = "db.password";
+	
+	PropertyConfigReader propertyReader;
+	
 	public Connection getConnection() throws SQLException {
+		propertyReader = new PropertyConfigReader();
+		
 		try
         {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(CLASS_DRIVER_NAME);
         } 
         catch (ClassNotFoundException e) {
         	log.log(Level.SEVERE, e.getMessage(), e);
         }
-        System.out.println("MySQL JDBC Driver Registered!");
         Connection connection = null;
         try {
             connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/timesheet", "root", "root");
-            System.out.println("SQL Connection to database established!");
+                .getConnection(propertyReader.getPropertyValue(DATABASE_URL), propertyReader.getPropertyValue(DATABASE_USERNAME), propertyReader.getPropertyValue(DATABASE_PASSWORD));
         } catch (SQLException e) {
             log.log(Level.SEVERE, e.getMessage(), e);
             throw new SQLException();
@@ -39,7 +46,6 @@ public class OvertimeJDBCConnector {
         {
             if(connection != null)
                 connection.close();
-            System.out.println("Connection closed !!");
         } catch (SQLException e) {
             e.printStackTrace();
             log.log(Level.SEVERE, e.getMessage(), e);
